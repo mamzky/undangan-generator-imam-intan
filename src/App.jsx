@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 export default function InvitationGenerator() {
-  const [name, setName] = useState('');
-  const [generatedText, setGeneratedText] = useState('');
+  const [name, setName] = useState("");
+  const [generatedText, setGeneratedText] = useState("");
 
-  const baseURL = 'https://aksarasenja.com/intanimam?to=';
+  const baseURL = "https://aksarasenja.com/intanimam?to=";
 
   const generateText = () => {
     const encodedName = encodeURIComponent(name.trim());
@@ -42,7 +42,7 @@ Wassalamu'alaikum Warohmatullahi Wabarokatuh`;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedText).then(() => {
-      alert('Teks undangan berhasil disalin!');
+      alert("Teks undangan berhasil disalin!");
     });
   };
 
@@ -52,16 +52,14 @@ Wassalamu'alaikum Warohmatullahi Wabarokatuh`;
         <h2 className="text-xl font-bold mb-4">Masukkan Nama Penerima</h2>
         <input
           type="text"
-          className="w-full border p-2 rounded mb-4"
+          className="w-full border p-3 rounded mb-4 text-lg"
           placeholder="Contoh: Bapak/Ibu Haji Sutarman"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <br/>
-        <br/>
         <button
           onClick={generateText}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg"
         >
           Generate Undangan
         </button>
@@ -69,16 +67,12 @@ Wassalamu'alaikum Warohmatullahi Wabarokatuh`;
 
       <div className="w-1/2 bg-white shadow-lg p-6 rounded-xl">
         <h2 className="text-xl font-bold mb-4">Teks Undangan</h2>
-        <span
-          readOnly
-          className="w-full h-[500px] border p-2 rounded mb-4 text-sm">
-            {generatedText}
-          </span>
-          <br/>
-          <br/>
+        <pre className="w-full h-[500px] border p-4 rounded mb-4 text-sm font-mono whitespace-pre-wrap overflow-auto bg-gray-50">
+          {generatedText}
+        </pre>
         <button
           onClick={copyToClipboard}
-          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 text-lg"
         >
           Copy Text Undangan
         </button>
