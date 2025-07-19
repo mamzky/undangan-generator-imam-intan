@@ -6,6 +6,10 @@ export default function InvitationGenerator() {
 
   const baseURL = "https://aksarasenja.com/intanimam?to=";
 
+  const resetData = () => {
+    setName("");
+    setGeneratedText("");
+  };
   const generateText = () => {
     const encodedName = encodeURIComponent(name.trim());
     const fullURL = `${baseURL}${encodedName}`;
@@ -47,35 +51,47 @@ Wassalamu'alaikum Warohmatullahi Wabarokatuh`;
   };
 
   return (
-    <div className="min-h-screen flex flex-row p-6 gap-6 bg-gray-100">
-      <div className="w-1/2 bg-white shadow-lg p-6 rounded-xl">
-        <h2 className="text-xl font-bold mb-4">Masukkan Nama Penerima</h2>
-        <input
-          type="text"
-          className="w-full border p-3 rounded mb-4 text-lg"
-          placeholder="Contoh: Bapak/Ibu Haji Sutarman"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <button
-          onClick={generateText}
-          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg"
-        >
-          Generate Undangan
-        </button>
-      </div>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="flex flex-col lg:flex-row max-w-screen-lg mx-auto gap-6">
+        {/* Input Panel */}
+        <div className="w-full lg:w-1/2 bg-white shadow-lg p-6 rounded-xl">
+          <h2 className="text-xl font-bold mb-4">Masukkan Nama Penerima</h2>
+          <input
+            type="text"
+            className="w-full border p-3 rounded mb-4 text-lg"
+            placeholder="Contoh: Bapak/Ibu Haji Sutarman"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={generateText}
+              className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700 text-lg w-full sm:w-auto"
+            >
+              Generate Undangan
+            </button>
+            <button
+              onClick={resetData}
+              className="bg-gray-400 text-white px-6 py-3 rounded hover:bg-gray-500 transition-colors duration-200 text-lg w-full sm:w-auto"
+            >
+              Reset Data
+            </button>
+          </div>
+        </div>
 
-      <div className="w-1/2 bg-white shadow-lg p-6 rounded-xl">
-        <h2 className="text-xl font-bold mb-4">Teks Undangan</h2>
-        <pre className="w-full h-[500px] border p-4 rounded mb-4 text-sm font-mono whitespace-pre-wrap overflow-auto bg-gray-50">
-          {generatedText}
-        </pre>
-        <button
-          onClick={copyToClipboard}
-          className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 text-lg"
-        >
-          Copy Text Undangan
-        </button>
+        {/* Output Panel */}
+        <div className="w-full lg:w-1/2 bg-white shadow-lg p-6 rounded-xl">
+          <h2 className="text-xl font-bold mb-4">Teks Undangan</h2>
+          <pre className="w-full h-[500px] border p-4 rounded mb-4 text-sm font-mono whitespace-pre-wrap overflow-auto bg-gray-50">
+            {generatedText}
+          </pre>
+          <button
+            onClick={copyToClipboard}
+            className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700 text-lg w-full sm:w-auto"
+          >
+            Copy Text Undangan
+          </button>
+        </div>
       </div>
     </div>
   );
